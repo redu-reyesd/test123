@@ -28,8 +28,11 @@ steps:
     pip install pytest pytest-azurepipelines
     pytest
   displayName: 'pytest'
-
-- task: oc-cmd@3
+- task: Kubernetes@1
   inputs:
-    connectionType: 'OpenShift Connection Service'
-    openshiftService: 'openshift-dev'
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'openshift'
+    namespace: 'ado-openshift'
+    command: 
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
